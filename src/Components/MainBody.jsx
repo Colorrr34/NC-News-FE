@@ -8,20 +8,33 @@ export default function MainBody() {
   useEffect(() => {
     fetchArticles(page).then(({ data }) => {
       setArticles(data.articles);
+      console.log(data.articles[0]);
     });
   }, []);
 
   return (
     <>
-      <ul key="articles-list">
+      <main key="articles">
         {articles.map((article) => {
+          const date = new Date(article.created_at);
+
           return (
-            <li key={article.article_id} id={article.article_id}>
-              {article.title}
-            </li>
+            <section key={article.article_id} id={article.article_id}>
+              <h2>{article.title}</h2>
+              <p className="article-info">
+                author: {article.author} | comments: {article.comment_count} |
+                votes: {article.votes}
+              </p>
+              <p className="created-at">Created at: {date.toDateString()}</p>
+              <img
+                src={article.article_img_url}
+                alt="article-image"
+                className="homepage-article-image"
+              />
+            </section>
           );
         })}
-      </ul>
+      </main>
     </>
   );
 }
