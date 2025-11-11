@@ -1,12 +1,7 @@
 import axios from "axios";
 
-export default function fetchArticle(articleId, readComments = false, limit) {
-  const commentQuery = readComments ? "/comments" : "";
-  const limitQuery = limit ? `?limit=${limit}` : "";
+export default function fetchArticle(articleId) {
   const url =
-    "https://rickys-nc-news-be.onrender.com/api/articles/" +
-    articleId +
-    commentQuery +
-    limitQuery;
+    "https://rickys-nc-news-be.onrender.com/api/articles/" + articleId;
   return axios.get(url);
 }

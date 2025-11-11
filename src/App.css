@@ -2,11 +2,6 @@ a {
   text-decoration: none;
 }
 
-.main-body {
-  grid-column: 2 / 3;
-  grid-row: 1 / span 2;
-}
-
 /* header */
 
 header {
@@ -15,10 +10,11 @@ header {
   position: fixed;
   padding: 10px;
   overflow: hidden;
-  background-color: gray;
+  background-color: rgb(166, 166, 234);
   top: 0px;
   left: 0px;
   right: 0px;
+  border-bottom: solid darkmagenta;
 }
 
 /* main page */
@@ -27,7 +23,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 2fr;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 /* side bar */
@@ -57,6 +53,13 @@ aside p {
 }
 
 /* main body */
+
+.main-body {
+  grid-column: 2 / 3;
+  grid-row: 1 / span 2;
+  padding-left: 20px;
+  border-left: solid;
+}
 
 main a {
   text-decoration: none;
