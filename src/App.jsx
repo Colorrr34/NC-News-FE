@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router";
 import "./App.css";
 import ArticleBody from "./Components/ArticleBody";
 import MainBody from "./Components/MainBody";
-import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
           path="/articles/:id"
           element={
             <>
-              <Nav /> <ArticleBody />
+              <ArticleBody />
             </>
           }
         />

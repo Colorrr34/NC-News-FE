@@ -41,14 +41,26 @@ export default function ArticleBody() {
     });
 
     fetchArticle(articleId, true, 3).then(({ data: { comments } }) => {
-      setComments(comments);
+      const commentsArray = comments.map((comment) => {
+        const { created_at, ...otherProperties } = comment;
+        const date = new Date(created_at);
+        const time = `${
+          date.getHours() > 10 ? date.getHours() : "0" + date.getHours()
+        }:${
+          date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()
+        } ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+
+        return { created_at: time, ...otherProperties };
+      });
+
+      setComments(commentsArray);
     });
   }, []);
 
   return (
-    <>
+    <div className="article">
       <Nav topic={topic} />
-      <section>
+      <section className="article-section">
         <h2>{title}</h2>
         <p>
           Author: {author} | Created at: {createdAt}
@@ -57,19 +69,19 @@ export default function ArticleBody() {
         <p>{body}</p>
       </section>
       <Link to="comments">
-        <p>comments:({commentCount})</p>
+        <p>Read comments:({commentCount})</p>
       </Link>
       {comments.map((comment) => {
         return (
-          <section key={comment.comment_id}>
+          <section key={comment.comment_id} className="comment-section">
+            <p className="username">author: {comment.author}</p>
             <p className="comment-body">{comment.body}</p>
             <p className="comment-info">
-              author: {comment.author} votes: {comment.votes}
+              votes: {comment.votes} | {comment.created_at}
             </p>
-            <p className="comment-date"></p>
           </section>
         );
       })}
-    </>
+    </div>
   );
 }
