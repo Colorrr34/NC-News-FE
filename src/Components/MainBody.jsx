@@ -1,19 +1,32 @@
 import fetchArticles from "../fetch/fetchArticles";
-import fetchTopics from "../fetch/fetchTopics";
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 export default function MainBody() {
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
+  const [pages, setPages] = useState([]);
+  const [topic, setTopic] = useState("all");
 
   useEffect(() => {
-    fetchArticles(sortBy, order, page).then(({ data }) => {
+    setCurrentPage(searchParams.get("p") || 1);
+    setTopic(searchParams.get("topic") || "all");
+  }, [searchParams]);
+
+  useEffect(() => {
+    fetchArticles(sortBy, order, currentPage, topic).then(({ data }) => {
+      const totalPages = Math.ceil(data.total_count / 10);
+      const pages = [];
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+      setPages(pages);
       setArticles(data.articles);
     });
-  }, [sortBy, order]);
+  }, [sortBy, order, currentPage, topic]);
 
   return (
     <>
@@ -63,6 +76,24 @@ export default function MainBody() {
             </Link>
           );
         })}
+
+        <ul className="main-page-list">
+          {pages.map((page) => {
+            if (page === Number(currentPage)) {
+              return <li key="current-page">{page}</li>;
+            }
+            return (
+              <li key={`main-page-${page}`}>
+                <Link
+                  relative="path"
+                  to={`?${topic === "all" ? "" : `topic=${topic}&`}p=${page}`}
+                >
+                  {page}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </main>
     </>
   );

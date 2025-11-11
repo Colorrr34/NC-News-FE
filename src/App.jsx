@@ -8,6 +8,7 @@ import MainBody from "./Components/MainBody";
 
 function App() {
   const [user, setUser] = useState("tickle122");
+
   return (
     <>
       <Header user={user} />
@@ -16,6 +17,7 @@ function App() {
         <div className="main-body">
           <Routes>
             <Route path="/" element={<MainBody />} />
+            <Route path="/articles" element={<MainBody />} />
             <Route
               path="/articles/:id"
               element={

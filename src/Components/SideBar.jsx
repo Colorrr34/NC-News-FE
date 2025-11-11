@@ -25,7 +25,6 @@ export default function SideBar() {
           );
         })}
       </ul>
-
       <Footer />
     </aside>
   );
