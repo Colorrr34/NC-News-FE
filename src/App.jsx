@@ -20,7 +20,10 @@ function App() {
             <Route path="/" element={<MainBody />} />
             <Route path="/articles" element={<MainBody />} />
             <Route path="/articles/:id" element={<ArticleBody user={user} />} />
-            <Route path="/articles/:id/comments" element={<Comments />} />
+            <Route
+              path="/articles/:id/comments"
+              element={<Comments user={user} />}
+            />
           </Routes>
         </div>
       </div>

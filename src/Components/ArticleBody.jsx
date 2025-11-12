@@ -20,10 +20,12 @@ export default function ArticleBody(props) {
     createdAt: "",
     votes: 0,
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   const [newComment, setNewComment] = useState({});
 
   useEffect(() => {
+    setIsLoading(true);
     fetchArticle(articleId).then(({ data }) => {
       const {
         title,
@@ -48,10 +50,15 @@ export default function ArticleBody(props) {
         commentCount: comment_count,
         votes: votes,
       });
+      setIsLoading(false);
     });
   }, []);
 
-  return (
+  return isLoading ? (
+    <section>
+      <h3>Loading...</h3>
+    </section>
+  ) : (
     <>
       <Nav topic={article.topic} />
       <main>
@@ -68,7 +75,7 @@ export default function ArticleBody(props) {
           user={user}
           setNewComment={setNewComment}
         />
-        <CommentsInArticle newComment={newComment} />
+        <CommentsInArticle newComment={newComment} user={user} />
       </main>
     </>
   );

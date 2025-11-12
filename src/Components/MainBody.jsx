@@ -91,7 +91,7 @@ export default function MainBody() {
           })
         )}
 
-        <ul className="main-page-list">
+        <ul className="page-list">
           {pages.map((page) => {
             if (page === currentPage) {
               return <li key="current-page">{page}</li>;

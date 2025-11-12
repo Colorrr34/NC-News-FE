@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 
 export default function CommentsInArticle(props) {
   const { id: articleId } = useParams();
-  const { newComment } = props;
+  const { newComment, user } = props;
 
   const [comments, setComments] = useState([]);
 
@@ -57,6 +57,9 @@ export default function CommentsInArticle(props) {
               <p className="comment-info">
                 votes: {comment.votes} | {comment.created_at}
               </p>
+              {user === comment.author ? (
+                <DeleteComment commentId={comment.comment_id} />
+              ) : null}
             </li>
           );
         })}
