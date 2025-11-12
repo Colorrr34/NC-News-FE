@@ -10,14 +10,16 @@ export default function ArticleBody(props) {
   const { user } = props;
   const { id: articleId } = useParams();
 
-  const [topic, setTopic] = useState("");
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [imageUrl, setImageUrl] = useState(null);
-  const [body, setBody] = useState("");
-  const [commentCount, setCommentCount] = useState(0);
-  const [createdAt, setCreatedAt] = useState("");
-  const [votes, setVotes] = useState(0);
+  const [article, setArticle] = useState({
+    topic: "",
+    title: "",
+    author: "",
+    imageUrl: null,
+    body: "",
+    commentCount: 0,
+    createdAt: "",
+    votes: 0,
+  });
 
   const [isCreatingComment, setIsCreatingComment] = useState(false);
   const [newComment, setNewComment] = useState({});
@@ -35,33 +37,36 @@ export default function ArticleBody(props) {
         votes,
       } = data;
 
-      setTitle(title);
-      setTopic(topic);
-      setAuthor(author);
-      setImageUrl(article_img_url);
-      setBody(body);
-      setCommentCount(comment_count);
       const date = new Date(created_at);
-      setCreatedAt(date.toDateString());
-      setVotes(votes);
+
+      setArticle({
+        title: title,
+        topic: topic,
+        author: author,
+        body: body,
+        imageUrl: article_img_url,
+        createdAt: date.toDateString(),
+        commentCount: comment_count,
+        votes: votes,
+      });
     });
   }, []);
 
   return (
     <div className="article">
-      <Nav topic={topic} />
+      <Nav topic={article.topic} />
       <section className="article-section">
-        <h2>{title}</h2>
+        <h2>{article.title}</h2>
         <p>
-          Author: {author} | Created at: {createdAt}
+          Author: {article.author} | Created at: {article.createdAt}
         </p>
-        <img src={imageUrl} alt="article-image" />
-        <p>{body}</p>
+        <img src={article.imageUrl} alt="article-image" />
+        <p>{article.body}</p>
       </section>
       <ul id="list-under-article">
         <span id="under-article-1">
           <li>
-            <Link to="comments">Read comments:({commentCount})</Link>
+            <Link to="comments">Read comments:({article.commentCount})</Link>
           </li>
           <li>
             <label htmlFor="create-comment" />
@@ -82,8 +87,8 @@ export default function ArticleBody(props) {
               <button
                 id="article-upvote"
                 onClick={() => {
-                  upvoteArticle(articleId);
-                  setVotes(votes + 1);
+                  upvoteArticle(article.articleId);
+                  setVotes(article.votes + 1);
                 }}
               >
                 upvote
@@ -95,15 +100,15 @@ export default function ArticleBody(props) {
               <button
                 id="article-downvote"
                 onClick={() => {
-                  downvoteArticle(articleId);
-                  setVotes(votes - 1);
+                  downvoteArticle(article.articleId);
+                  setVotes(article.votes - 1);
                 }}
               >
                 downvote
               </button>
             </label>
           </li>
-          <li id="article-votes">votes: {votes}</li>
+          <li id="article-votes">votes: {article.votes}</li>
         </span>
       </ul>
       {isCreatingComment ? (

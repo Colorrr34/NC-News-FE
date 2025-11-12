@@ -14,7 +14,7 @@ export default function MainBody() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setCurrentPage(searchParams.get("p") || 1);
+    setCurrentPage(Number(searchParams.get("p")) || 1);
     setTopic(searchParams.get("topic") || "all");
   }, [searchParams]);
 
@@ -34,7 +34,7 @@ export default function MainBody() {
 
   return (
     <>
-      <main key="articles">
+      <main key="articles" className="main-body">
         <label htmlFor="sort-by-selector">sort by: </label>
         <select
           id="sort-by-selector"
@@ -91,7 +91,7 @@ export default function MainBody() {
 
         <ul className="main-page-list">
           {pages.map((page) => {
-            if (page === Number(currentPage)) {
+            if (page === currentPage) {
               return <li key="current-page">{page}</li>;
             }
             return (

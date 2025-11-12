@@ -15,7 +15,7 @@ export default function CreateComment(props) {
   }
 
   return (
-    <>
+    <form>
       <label htmlFor="comment-input">
         <textarea
           id="comment-input"
@@ -30,7 +30,8 @@ export default function CreateComment(props) {
       <button
         id="submit-comment"
         type="submit"
-        onClick={(e) => {
+        onSubmit={(e) => {
+          e.preventDefault();
           submitComment(inputText, user, articleId);
           setShowSubmitMessage(true);
         }}
@@ -38,6 +39,6 @@ export default function CreateComment(props) {
         Submit
       </button>
       {ShowSubmitMessage ? <p>comment submitted!</p> : null}
-    </>
+    </form>
   );
 }

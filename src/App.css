@@ -90,7 +90,7 @@ footer {
 
 /* main body */
 
-.main-body {
+.content-body {
   grid-column: 2 / 3;
   grid-row: 1 / span 2;
   padding: 20px;
@@ -185,6 +185,15 @@ main section h2 {
   padding-left: 10px;
 }
 
+.article a p {
+  margin-left: 10px;
+}
+
+.article img {
+  max-width: 70%vw;
+  max-height: auto;
+}
+
 /* between article and comments */
 #comment-input {
   height: 100px;
@@ -241,15 +250,6 @@ main section h2 {
   margin-top: 10px;
 }
 
-.article a p {
-  margin-left: 10px;
-}
-
-.article img {
-  max-width: 70%vw;
-  max-height: auto;
-}
-
 /* comments page */
 
 .comments-body .article-section {
@@ -266,6 +266,7 @@ main section h2 {
 .article-section h2 {
   grid-row: 1/2;
   grid-column: 1 / span 2;
+  margin: 5px;
 }
 
 .article-section img {

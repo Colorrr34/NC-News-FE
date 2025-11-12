@@ -15,7 +15,7 @@ function App() {
       <Header user={user} />
       <div className="body-container">
         <SideBar />
-        <div className="main-body">
+        <div className="content-body">
           <Routes>
             <Route path="/" element={<MainBody />} />
             <Route path="/articles" element={<MainBody />} />
