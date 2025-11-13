@@ -1,13 +1,12 @@
 import { useParams } from "react-router";
-import { fetchArticle } from "../fetch/get";
+import { getArticle } from "../API/get";
 import { useState, useEffect } from "react";
-import Nav from "../Components/Nav";
-import CreateCommentAndVotes from "../Sections/CreateCommentAndVotes";
+import Nav from "./Nav";
+import CommentAndVoteSection from "../Sections/CommentAndVoteSection";
 import "../stylesheets/article.css";
-import CommentsInArticle from "../Sections/CommentsInArticle";
+import ArticleComments from "../Sections/ArticleComments";
 
-export default function ArticleBody(props) {
-  const { user } = props;
+export default function SingleArticle() {
   const { id: articleId } = useParams();
 
   const [article, setArticle] = useState({
@@ -26,7 +25,7 @@ export default function ArticleBody(props) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticle(articleId).then(({ data }) => {
+    getArticle(articleId).then(({ data }) => {
       const {
         title,
         topic,
@@ -70,14 +69,12 @@ export default function ArticleBody(props) {
           <img src={article.imageUrl} alt="article-image" />
           <p>{article.body}</p>
         </article>
-        <CreateCommentAndVotes
-          user={user}
+        <CommentAndVoteSection
           setNewComment={setNewComment}
           votes={article.votes}
         />
-        <CommentsInArticle
+        <ArticleComments
           newComment={newComment}
-          user={user}
           commentCount={article.commentCount}
         />
       </main>

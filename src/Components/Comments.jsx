@@ -1,13 +1,14 @@
 import { useParams, Link, useSearchParams } from "react-router";
-import { useState, useEffect } from "react";
-import { fetchArticleComments, fetchArticle } from "../fetch/get";
-import ArticleInComment from "../Sections/ArticleInComment";
+import { useState, useEffect, useContext } from "react";
+import { getCommentsByArticle, getArticle } from "../API/get";
+import ArticleSummary from "../Sections/ArticleSummary";
 import Nav from "./Nav";
-import DeleteComment from "./FunctionalComponents/DeleteComment";
+import DeleteComment from "./ApiComponents/DeleteComment";
 import "../stylesheets/comments.css";
+import { UserContext } from "../Provider/Provider";
 
-export default function Comments(props) {
-  const { user } = props;
+export default function Comments() {
+  const { user } = useContext(UserContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { id: articleId } = useParams();
   const [currentPage, setCurrentPage] = useState(
@@ -19,7 +20,7 @@ export default function Comments(props) {
 
   const [article, setArticle] = useState({});
   useEffect(() => {
-    fetchArticle(articleId).then(({ data }) => {
+    getArticle(articleId).then(({ data }) => {
       setArticle(data);
     });
   }, []);
@@ -33,7 +34,7 @@ export default function Comments(props) {
   useEffect(() => {
     setTimeout(
       () => {
-        fetchArticleComments(articleId, 10, currentPage).then(({ data }) => {
+        getCommentsByArticle(articleId, 10, currentPage).then(({ data }) => {
           const totalPages = Math.ceil(data.total_count / 10);
           const pages = [];
           for (let i = 1; i <= totalPages; i++) {
@@ -52,7 +53,7 @@ export default function Comments(props) {
     <>
       <Nav topic={article.topic} />
       <main className="comments-body">
-        <ArticleInComment article={article} />
+        <ArticleSummary article={article} />
         <p>comments:</p>
         {comments.map((comment) => {
           return comment.comment_id === deletedComment ? (

@@ -1,16 +1,19 @@
-import { fetchArticleComments } from "../fetch/get";
-import { useState, useEffect } from "react";
+import { getCommentsByArticle } from "../API/get";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router";
+import { UserContext } from "../Provider/Provider";
+import DeleteComment from "../Components/ApiComponents/DeleteComment";
 
 export default function CommentsInArticle(props) {
   const { id: articleId } = useParams();
-  const { newComment, user, commentCount } = props;
+  const { newComment, commentCount } = props;
+  const { user } = useContext(UserContext);
 
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    fetchArticleComments(articleId, 3).then(({ data: { comments } }) => {
+    getCommentsByArticle(articleId, 3).then(({ data: { comments } }) => {
       const commentsArray = comments.map((comment) => {
         const { created_at, ...otherProperties } = comment;
         const date = new Date(created_at);

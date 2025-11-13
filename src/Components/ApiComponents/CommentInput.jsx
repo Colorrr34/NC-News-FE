@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import { postComment } from "../../fetch/post";
-import { UserContext } from "../../Context/Context";
+import { postComment } from "../../API/post";
+import { UserContext } from "../../Provider/Provider";
 import { useContext } from "react";
 
-export default function CreateComment(props) {
+export default function CommentInput(props) {
   const { id: articleId } = useParams();
   const { setNewComment } = props;
   const [inputText, setInputText] = useState("");

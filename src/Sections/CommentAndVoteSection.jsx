@@ -1,8 +1,8 @@
 import { useState } from "react";
-import CreateCommentSection from "./CreateCommentSection";
-import { upvoteArticle, downvoteArticle } from "../fetch/patch";
+import CommentInputSection from "./CommentInputSection";
+import { upvoteArticle, downvoteArticle } from "../API/patch";
 
-export default function CreateCommentAndVotes(props) {
+export default function CommentAndVoteSection(props) {
   const { votes: articleVotes, user, setNewComment } = props;
 
   const [isCreatingComment, setIsCreatingComment] = useState(false);
@@ -16,7 +16,7 @@ export default function CreateCommentAndVotes(props) {
           : "article--section-2"
       }
     >
-      <CreateCommentSection
+      <CommentInputSection
         setIsCreatingComment={setIsCreatingComment}
         isCreatingComment={isCreatingComment}
         setNewComment={setNewComment}

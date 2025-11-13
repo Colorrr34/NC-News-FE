@@ -1,8 +1,10 @@
-import { fetchArticles } from "../fetch/get";
+import { getArticles } from "../API/get";
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router";
+import MainSort from "./ApiComponents/MainSort";
+import PageList from "../Sections/PageList";
 
-export default function MainBody() {
+export default function MainPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [articles, setArticles] = useState([]);
@@ -20,7 +22,7 @@ export default function MainBody() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles(sortBy, order, currentPage, topic).then(({ data }) => {
+    getArticles(sortBy, order, currentPage, topic).then(({ data }) => {
       const totalPages = Math.ceil(data.total_count / 10);
       const pages = [];
       for (let i = 1; i <= totalPages; i++) {
@@ -35,27 +37,7 @@ export default function MainBody() {
   return (
     <>
       <main key="articles" className="main-main">
-        <label htmlFor="sort-by-selector">sort by: </label>
-        <select
-          id="sort-by-selector"
-          onChange={(e) => {
-            setSortBy(e.target.value);
-          }}
-        >
-          <option value="created_at">created at</option>
-          <option value="votes">votes</option>
-          <option value="comment_count">comments count</option>
-        </select>
-        <label htmlFor="order-selector">order: </label>
-        <select
-          id="order-selector"
-          onChange={(e) => {
-            setOrder(e.target.value);
-          }}
-        >
-          <option value="asc">ascending</option>
-          <option value="desc">descending</option>
-        </select>
+        <MainSort setSortBy={setSortBy} setOrder={setOrder} />
         {isLoading ? (
           <section id="loading-section">
             <h2>Loading...</h2>
@@ -91,23 +73,7 @@ export default function MainBody() {
           })
         )}
 
-        <ul className="page-list">
-          {pages.map((page) => {
-            if (page === currentPage) {
-              return <li key="current-page">{page}</li>;
-            }
-            return (
-              <li key={`main-page-${page}`}>
-                <Link
-                  relative="path"
-                  to={`?${topic === "all" ? "" : `topic=${topic}&`}p=${page}`}
-                >
-                  {page}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <PageList pages={pages} currentPage={currentPage} topic={topic} />
       </main>
     </>
   );

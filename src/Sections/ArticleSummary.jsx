@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
 
-export default function ArticleInComment(props) {
+export default function ArticleSummary(props) {
   const { article } = props;
   return (
     <>

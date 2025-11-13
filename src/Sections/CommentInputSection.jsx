@@ -1,7 +1,6 @@
-import CreateComment from "../Components/FunctionalComponents/CreateComment";
-import { UserProvider } from "../Provider/Provider";
+import CommentInput from "../Components/ApiComponents/CommentInput";
 
-export default function CreateCommentSection(props) {
+export default function CommentInputSection(props) {
   const { isCreatingComment, setIsCreatingComment, setNewComment } = props;
 
   return (
@@ -20,9 +19,7 @@ export default function CreateCommentSection(props) {
 
       <div className="article--section-2-3-create-comment">
         {isCreatingComment ? (
-          <UserProvider>
-            <CreateComment setNewComment={setNewComment} />
-          </UserProvider>
+          <CommentInput setNewComment={setNewComment} />
         ) : null}
       </div>
     </>

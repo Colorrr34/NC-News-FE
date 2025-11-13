@@ -1,22 +1,18 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
-import { fetchUser, getUsers } from "../fetch/get";
+import { getUser } from "../API/get";
 import "../stylesheets/header.css";
-import { UserContext } from "../Context/Context";
+import { UserContext } from "../Provider/Provider";
+import SelectUser from "./ApiComponents/SelectUser";
 
 export default function Header() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const [avatarUrl, setAvatarUrl] = useState(null);
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetchUser(user).then(({ data: { user: userData } }) => {
+    getUser(user).then(({ data: { user: userData } }) => {
       setAvatarUrl(userData.avatar_url);
-    });
-
-    getUsers().then(({ data: { users } }) => {
-      setUsers(users);
     });
   }, [user]);
 
@@ -25,27 +21,16 @@ export default function Header() {
       <Link to="/">
         <h1>NC News</h1>
       </Link>
-      <ul className="header-user-list">
-        {users.map((user) => {
-          return (
-            <li key={user.username}>
-              <label htmlFor={`user-${user.username}`} />
-              <button
-                id={`user-${user.username}`}
-                type="button"
-                onClick={() => {
-                  setUser(user.username);
-                }}
-              >
-                {user.username}{" "}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-      <section className="user-banner">
-        <p>{user}</p>
-        <img src={avatarUrl} alt="user-avatar-picture" id="user-profile" />
+      <section className="header--user-section">
+        <SelectUser />
+        <section className="user-banner">
+          <p>{user}</p>
+          <img
+            src={avatarUrl}
+            alt="user-avatar-picture"
+            className="img-user-profile"
+          />
+        </section>
       </section>
     </header>
   );

@@ -20,18 +20,23 @@ header {
   border: solid 2px;
   padding: 3px;
   border-radius: 3%;
-}
-
-#user-profile {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  border: solid;
-  margin: 10px;
-}
-
-header section {
   align-self: center;
   width: 150px;
+}
+
+.header--select-user--form {
+  margin: 5px;
+}
+
+.img-user-profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: solid;
+  margin: 5px;
+}
+
+.header--user-section {
   display: flex;
+  flex-direction: column;
 }
