@@ -1,10 +1,10 @@
 import { useParams } from "react-router";
-import fetchArticle from "../fetch/fetchArticle";
+import { fetchArticle } from "../fetch/get";
 import { useState, useEffect } from "react";
 import Nav from "../Components/Nav";
-import CreateCommentAndVotes from "./Sections/CreateCommentAndVotes";
+import CreateCommentAndVotes from "../Sections/CreateCommentAndVotes";
 import "../stylesheets/article.css";
-import CommentsInArticle from "./Sections/CommentsInArticle";
+import CommentsInArticle from "../Sections/CommentsInArticle";
 
 export default function ArticleBody(props) {
   const { user } = props;
@@ -71,11 +71,15 @@ export default function ArticleBody(props) {
           <p>{article.body}</p>
         </article>
         <CreateCommentAndVotes
-          article={article}
           user={user}
           setNewComment={setNewComment}
+          votes={article.votes}
         />
-        <CommentsInArticle newComment={newComment} user={user} />
+        <CommentsInArticle
+          newComment={newComment}
+          user={user}
+          commentCount={article.commentCount}
+        />
       </main>
     </>
   );

@@ -1,10 +1,11 @@
-import fetchArticleComments from "../../fetch/fetchArticleComments";
+import { fetchArticleComments } from "../fetch/get";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router";
 
 export default function CommentsInArticle(props) {
   const { id: articleId } = useParams();
-  const { newComment, user } = props;
+  const { newComment, user, commentCount } = props;
 
   const [comments, setComments] = useState([]);
 
@@ -64,6 +65,9 @@ export default function CommentsInArticle(props) {
           );
         })}
       </ul>
+      <p>
+        <Link to="comments">Read more comments:({commentCount})</Link>
+      </p>
     </div>
   );
 }

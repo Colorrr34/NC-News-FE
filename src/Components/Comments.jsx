@@ -1,9 +1,8 @@
 import { useParams, Link, useSearchParams } from "react-router";
 import { useState, useEffect } from "react";
-import fetchArticleComments from "../fetch/fetchArticleComments";
-import ArticleInComment from "./Sections/ArticleInComment";
+import { fetchArticleComments, fetchArticle } from "../fetch/get";
+import ArticleInComment from "../Sections/ArticleInComment";
 import Nav from "./Nav";
-import fetchArticle from "./../fetch/fetchArticle";
 import DeleteComment from "./FunctionalComponents/DeleteComment";
 import "../stylesheets/comments.css";
 

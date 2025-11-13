@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function deleteComment(commentId) {
+export function deleteComment(commentId) {
   const url =
     "https://rickys-nc-news-be.onrender.com/api/comments/" + commentId;
 

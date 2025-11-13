@@ -6,13 +6,16 @@ import SideBar from "./Components/SideBar";
 import ArticleBody from "./Components/ArticleBody";
 import MainBody from "./Components/MainBody";
 import Comments from "./Components/Comments";
+import { UserProvider } from "./Provider/Provider";
 
 function App() {
   const [user, setUser] = useState("tickle122");
 
   return (
     <>
-      <Header user={user} />
+      <UserProvider>
+        <Header />
+      </UserProvider>
       <div className="body-container">
         <SideBar />
         <div className="content-body">

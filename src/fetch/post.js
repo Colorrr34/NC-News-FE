@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function postComment(text, user, articleId) {
+export function postComment(text, user, articleId) {
   return axios.post(
     "https://rickys-nc-news-be.onrender.com/api/articles/" +
       articleId +

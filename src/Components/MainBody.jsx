@@ -1,4 +1,4 @@
-import fetchArticles from "../fetch/fetchArticles";
+import { fetchArticles } from "../fetch/get";
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router";
 

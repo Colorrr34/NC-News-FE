@@ -1,13 +1,12 @@
-import { Link } from "react-router";
 import { useState } from "react";
-import CreateComment from "./CreateComment";
-import { upvoteArticle, downvoteArticle } from "../../fetch/voteArticles";
+import CreateCommentSection from "./CreateCommentSection";
+import { upvoteArticle, downvoteArticle } from "../fetch/patch";
 
 export default function CreateCommentAndVotes(props) {
-  const { article, user, setNewComment } = props;
+  const { votes: articleVotes, user, setNewComment } = props;
 
   const [isCreatingComment, setIsCreatingComment] = useState(false);
-  const [votes, setVotes] = useState(article.votes);
+  const [votes, setVotes] = useState(articleVotes);
 
   return (
     <section
@@ -17,22 +16,11 @@ export default function CreateCommentAndVotes(props) {
           : "article--section-2"
       }
     >
-      <div className="article--section-2-1-read-open-comment">
-        <p>
-          <Link to="comments">Read comments:({article.commentCount})</Link>
-        </p>
-
-        <label htmlFor="create-comment" />
-        <button
-          id="create-comment"
-          onClick={() => {
-            setIsCreatingComment(true);
-          }}
-        >
-          create a comment
-        </button>
-      </div>
-
+      <CreateCommentSection
+        setIsCreatingComment={setIsCreatingComment}
+        isCreatingComment={isCreatingComment}
+        setNewComment={setNewComment}
+      />
       <div className="article--section-2-2-votes">
         <label htmlFor="article-upvote">
           <button
@@ -59,12 +47,6 @@ export default function CreateCommentAndVotes(props) {
         </label>
 
         <p id="article-votes">votes: {votes}</p>
-      </div>
-
-      <div className="article--section-2-3-create-comment">
-        {isCreatingComment ? (
-          <CreateComment user={user} setNewComment={setNewComment} />
-        ) : null}
       </div>
     </section>
   );

@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import postComment from "../../fetch/postComment";
+import { postComment } from "../../fetch/post";
+import { UserContext } from "../../Context/Context";
+import { useContext } from "react";
 
 export default function CreateComment(props) {
   const { id: articleId } = useParams();
-  const { user, setNewComment } = props;
+  const { setNewComment } = props;
   const [inputText, setInputText] = useState("");
   const [ShowSubmitMessage, setShowSubmitMessage] = useState(false);
+
+  const { user } = useContext(UserContext);
 
   function submitComment(text) {
     postComment(text, user, articleId).then(({ data }) => {
@@ -20,7 +24,7 @@ export default function CreateComment(props) {
         <textarea
           id="comment-input"
           type="text"
-          placeholder="Write your comment here..."
+          placeholder={`Commenting as ${user}`}
           onChange={(e) => {
             setInputText(e.target.value);
           }}
