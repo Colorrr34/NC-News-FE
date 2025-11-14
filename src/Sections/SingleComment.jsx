@@ -1,15 +1,17 @@
 import DeleteComment from "../Components/ApiComponents/DeleteComment";
 import VoteComment from "../Components/ApiComponents/VoteComment";
-import { UsernameContext } from "../Provider/Provider";
-import { useContext } from "react";
+import { useUsername } from "../Provider/UsernameProvider";
 
 export default function SingleComment(props) {
   const { comment, setDeletedComment } = props;
-  const { username } = useContext(UsernameContext);
+  const { username } = useUsername();
 
   const date = new Date(comment.created_at);
-  const createdAt =
-    date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+  const createdAt = `${
+    date.getHours() > 10 ? date.getHours() : "0" + date.getHours()
+  }:${
+    date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()
+  } ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
   return (
     <section className="single-comment-comment-section">

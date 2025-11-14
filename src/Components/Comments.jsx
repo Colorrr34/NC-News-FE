@@ -1,12 +1,13 @@
 import { useParams, useSearchParams } from "react-router";
-import { useState, useEffect, useContext } from "react";
-import { getCommentsByArticle, getArticle } from "../API/get";
+import { useState, useEffect } from "react";
+import { getCommentsByArticle, getArticle } from "../api";
 import ArticleSummary from "../Sections/ArticleSummary";
 import Nav from "./Nav";
 import SingleComment from "../Sections/SingleComment";
 import "../stylesheets/comments.css";
-import { UsernameContext } from "../Provider/Provider";
 import CommentsPageList from "../Sections/CommentsPageList";
+import CommentInputSection from "../Sections/CommentInputSection";
+import { ParentClassContext } from "../Context/ClassContext";
 
 export default function Comments() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,8 +18,11 @@ export default function Comments() {
   const [comments, setComments] = useState([]);
   const [pages, setPages] = useState([]);
   const [deletedComment, setDeletedComment] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
+  const [isCreatingComment, setIsCreatingComment] = useState(false);
+  const [newComment, setNewComment] = useState({});
+
   useEffect(() => {
     getArticle(articleId).then(({ data }) => {
       setArticle(data);
@@ -34,6 +38,7 @@ export default function Comments() {
   useEffect(() => {
     setTimeout(
       () => {
+        setIsLoading(true);
         getCommentsByArticle(articleId, 10, currentPage).then(({ data }) => {
           const totalPages = Math.ceil(data.total_count / 10);
           const pages = [];
@@ -43,18 +48,39 @@ export default function Comments() {
           setPages(pages);
           setComments(data.comments);
           setDeletedComment(null);
+          setIsLoading(false);
         });
       },
       deletedComment ? 3000 : 0
     );
   }, [currentPage, deletedComment]);
 
-  return (
+  useEffect(() => {
+    if (Object.keys(newComment).length > 0) {
+      const copy = structuredClone(comments);
+      copy.unshift(newComment);
+      copy.pop();
+      setComments(copy);
+    }
+  }, [newComment]);
+
+  return isLoading ? (
+    <section className="section-loading">Loading...</section>
+  ) : (
     <>
       <Nav topic={article.topic} />
       <main className="comments-body">
         <ArticleSummary article={article} />
-        <p>comments:</p>
+        <section className="comments--section-3">
+          <p>comments:</p>
+          <ParentClassContext value="comments--section-3">
+            <CommentInputSection
+              isCreatingComment={isCreatingComment}
+              setIsCreatingComment={setIsCreatingComment}
+              setNewComment={setNewComment}
+            />
+          </ParentClassContext>
+        </section>
         {comments.map((comment) => {
           return comment.comment_id === deletedComment ? (
             <section

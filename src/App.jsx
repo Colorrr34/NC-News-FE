@@ -5,7 +5,7 @@ import SideBar from "./Components/SideBar";
 import SingleArticle from "./Components/SingleArticle";
 import MainPage from "./Components/HomePage";
 import Comments from "./Components/Comments";
-import { UserProvider } from "./Provider/Provider";
+import { UserProvider } from "./Provider/UsernameProvider";
 
 function App() {
   return (

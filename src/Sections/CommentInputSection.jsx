@@ -1,11 +1,29 @@
 import CommentInput from "../Components/ApiComponents/CommentInput";
+import { useParentClassContext } from "../Context/ClassContext";
+import { useParams } from "react-router";
+import { postComment } from "../api";
+import { useUsername } from "../Provider/UsernameProvider";
+import { useState } from "react";
 
 export default function CommentInputSection(props) {
   const { isCreatingComment, setIsCreatingComment, setNewComment } = props;
+  const { id: articleId } = useParams();
+
+  const { username } = useUsername();
+  const parentClass = useParentClassContext();
+
+  const [showSubmitMessage, setShowSubmitMessage] = useState(false);
+
+  function submitComment(text) {
+    postComment(text, username, articleId).then(({ data }) => {
+      setNewComment(data);
+    });
+    setShowSubmitMessage(true);
+  }
 
   return (
     <>
-      <div className="article--section-2-1-read-open-comment">
+      <div className={parentClass + "-read-open-comment"}>
         <label htmlFor="create-comment" />
         <button
           id="create-comment"
@@ -17,11 +35,18 @@ export default function CommentInputSection(props) {
         </button>
       </div>
 
-      <div className="article--section-2-3-create-comment">
+      <form
+        className={parentClass + "-create-comment"}
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitComment(e.target[0].value);
+          e.target[0].value = "";
+        }}
+      >
         {isCreatingComment ? (
-          <CommentInput setNewComment={setNewComment} />
+          <CommentInput showSubmitMessage={showSubmitMessage} />
         ) : null}
-      </div>
+      </form>
     </>
   );
 }

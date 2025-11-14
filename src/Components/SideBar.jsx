@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
-import { getTopics } from "../API/get";
+import { getTopics } from "../api";
 import Footer from "./Footer";
 import "../stylesheets/sidebar.css";
 

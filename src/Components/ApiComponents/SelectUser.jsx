@@ -1,9 +1,9 @@
-import { UsernameContext } from "../../Provider/Provider";
+import { UsernameContext, useUsername } from "../../Provider/UsernameProvider";
 import { useEffect, useState, useContext } from "react";
-import { getUsers } from "../../API/get";
+import { getUsers } from "../../api";
 
 export default function SelectUser() {
-  const { setUsername } = useContext(UsernameContext);
+  const { setUsername } = useUsername();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

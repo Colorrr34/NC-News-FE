@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteComment } from "../../API/delete";
+import { deleteComment } from "../../api";
 
 export default function DeleteComment(props) {
   const { commentId, setDeletedComment } = props;

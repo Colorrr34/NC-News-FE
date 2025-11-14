@@ -1,4 +1,4 @@
-import { upvoteComment, downvoteComment } from "../../API/comments";
+import { upvoteComment, downvoteComment } from "../../api.js";
 import { useState } from "react";
 
 export default function VoteComment(props) {

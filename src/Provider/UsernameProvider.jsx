@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createContext } from "react";
 
 export const UsernameContext = createContext(null);
@@ -11,4 +11,8 @@ export function UserProvider({ children }) {
       {children}
     </UsernameContext>
   );
+}
+
+export function useUsername() {
+  return useContext(UsernameContext);
 }

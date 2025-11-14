@@ -1,4 +1,4 @@
-import { upvoteArticle, downvoteArticle } from "../../API/patch";
+import { upvoteArticle, downvoteArticle } from "../../api";
 import { useState } from "react";
 import { useParams } from "react-router";
 

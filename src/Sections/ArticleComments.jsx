@@ -1,50 +1,34 @@
-import { getCommentsByArticle } from "../API/get";
-import { useState, useEffect, useContext } from "react";
+import { getCommentsByArticle } from "../api";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router";
-import { UsernameContext } from "../Provider/Provider";
-import DeleteComment from "../Components/ApiComponents/DeleteComment";
+import { useUsername } from "../Provider/UsernameProvider";
+import SingleComment from "./SingleComment";
 
 export default function CommentsInArticle(props) {
   const { id: articleId } = useParams();
   const { newComment, commentCount } = props;
-  const { username } = useContext(UsernameContext);
+  const { username } = useUsername();
+  const [deletedComment, setDeletedComment] = useState(null);
 
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    getCommentsByArticle(articleId, 3).then(({ data: { comments } }) => {
-      const commentsArray = comments.map((comment) => {
-        const { created_at, ...otherProperties } = comment;
-        const date = new Date(created_at);
-        const time = `${
-          date.getHours() > 10 ? date.getHours() : "0" + date.getHours()
-        }:${
-          date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()
-        } ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-
-        return { created_at: time, ...otherProperties };
-      });
-
-      setComments(commentsArray);
-    });
-  }, []);
+    setTimeout(
+      () => {
+        getCommentsByArticle(articleId, 3).then(({ data: { comments } }) => {
+          setComments(comments);
+        });
+      },
+      deletedComment ? 3000 : 0
+    );
+  }, [deletedComment]);
 
   useEffect(() => {
     if (Object.keys(newComment).length > 0) {
       const copy = structuredClone(comments);
-
-      const { created_at, ...otherProperties } = newComment;
-      const date = new Date(created_at);
-      const time = `${
-        date.getHours() > 10 ? date.getHours() : "0" + date.getHours()
-      }:${
-        date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()
-      } ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-
-      copy.unshift({ created_at: time, ...otherProperties });
+      copy.unshift(newComment);
       copy.pop();
-
       setComments(copy);
     }
   }, [newComment]);
@@ -54,17 +38,19 @@ export default function CommentsInArticle(props) {
       <p>Top Comments</p>
       <ul>
         {comments.map((comment) => {
-          return (
-            <li key={comment.comment_id} className="comment-section">
-              <p className="username">author: {comment.author}</p>
-              <p className="comment-body">{comment.body}</p>
-              <p className="comment-info">
-                votes: {comment.votes} | {comment.created_at}
-              </p>
-              {username === comment.author ? (
-                <DeleteComment commentId={comment.comment_id} />
-              ) : null}
-            </li>
+          return comment.comment_id === deletedComment ? (
+            <section
+              key="deleted-comment"
+              className="section-deleted-comment-placeholder"
+            >
+              <p>Comment deleted</p>
+            </section>
+          ) : (
+            <SingleComment
+              comment={comment}
+              setDeletedComment={setDeletedComment}
+              key={`comment-${comment.comment_id}`}
+            />
           );
         })}
       </ul>

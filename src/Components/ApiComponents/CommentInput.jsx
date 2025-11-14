@@ -1,48 +1,23 @@
-import { useState } from "react";
-import { useParams } from "react-router";
-import { postComment } from "../../API/post";
-import { UsernameContext } from "../../Provider/Provider";
-import { useContext } from "react";
+import { useUsername } from "../../Provider/UsernameProvider";
 
 export default function CommentInput(props) {
-  const { id: articleId } = useParams();
-  const { setNewComment } = props;
-  const [inputText, setInputText] = useState("");
-  const [ShowSubmitMessage, setShowSubmitMessage] = useState(false);
-
-  const { username } = useContext(UsernameContext);
-
-  function submitComment(text) {
-    postComment(text, username, articleId).then(({ data }) => {
-      setNewComment(data);
-    });
-  }
+  const { username } = useUsername();
+  const { showSubmitMessage } = props;
 
   return (
-    <form>
-      <label htmlFor="comment-input">
-        <textarea
-          id="comment-input"
-          type="text"
-          placeholder={`Commenting as ${username}`}
-          onChange={(e) => {
-            setInputText(e.target.value);
-          }}
-        ></textarea>
-      </label>
+    <>
+      <label htmlFor="comment-input" />
+      <textarea
+        id="comment-input"
+        type="text"
+        placeholder={`Commenting as ${username}`}
+      ></textarea>
+
       <label htmlFor="submit-comment" />
-      <button
-        id="submit-comment"
-        type="submit"
-        onSubmit={(e) => {
-          e.preventDefault();
-          submitComment(inputText, username, articleId);
-          setShowSubmitMessage(true);
-        }}
-      >
+      <button id="submit-comment" type="submit" className="button">
         Submit
       </button>
-      {ShowSubmitMessage ? <p>comment submitted!</p> : null}
-    </form>
+      {showSubmitMessage ? <p>comment submitted!</p> : null}
+    </>
   );
 }

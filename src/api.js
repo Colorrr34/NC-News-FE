@@ -33,3 +33,33 @@ export function getUsers() {
 
   return axios.get(url);
 }
+
+export function deleteComment(commentId) {
+  const url = `${baseUrl}comments/${commentId}`;
+
+  return axios.delete(url);
+}
+
+export function postComment(text, username, articleId) {
+  const url = baseUrl + `articles/${articleId}/comments`;
+  return axios.post(url, { body: text, author: username });
+}
+
+export function upvoteArticle(articleId) {
+  const url = `${baseUrl}articles/${articleId}`;
+  return axios.patch(url, { inc_votes: 1 });
+}
+export function downvoteArticle(articleId) {
+  const url = `${baseUrl}articles/${articleId}`;
+  return axios.patch(url, { inc_votes: -1 });
+}
+
+export function upvoteComment(commentId) {
+  const url = `${baseUrl}comments/${commentId}`;
+  return axios.patch(url, { inc_votes: 1 });
+}
+
+export function downvoteComment(commentId) {
+  const url = `${baseUrl}comments/${commentId}`;
+  return axios.patch(url, { inc_votes: -1 });
+}

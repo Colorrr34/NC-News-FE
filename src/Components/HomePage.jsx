@@ -1,4 +1,4 @@
-import { getArticles } from "../API/get";
+import { getArticles } from "../api";
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router";
 import SortArticles from "../Sections/SortArticles";

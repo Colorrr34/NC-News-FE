@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
-import { getUser } from "../API/get";
+import { getUser } from "../api";
 import "../stylesheets/header.css";
-import { UsernameContext } from "../Provider/Provider";
+import { useUsername } from "../Provider/UsernameProvider";
 import SelectUser from "./ApiComponents/SelectUser";
 
 export default function Header() {
-  const { username } = useContext(UsernameContext);
+  const { username } = useUsername();
 
   const [avatarUrl, setAvatarUrl] = useState(null);
 

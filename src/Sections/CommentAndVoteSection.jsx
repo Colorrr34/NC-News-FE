@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CommentInputSection from "./CommentInputSection";
 import VoteArticles from "../Components/ApiComponents/VoteArticles";
+import { ParentClassContext } from "../Context/ClassContext";
 
 export default function CommentAndVoteSection(props) {
   const { votes: articleVotes, setNewComment } = props;
@@ -15,11 +16,13 @@ export default function CommentAndVoteSection(props) {
           : "article--section-2"
       }
     >
-      <CommentInputSection
-        setIsCreatingComment={setIsCreatingComment}
-        isCreatingComment={isCreatingComment}
-        setNewComment={setNewComment}
-      />
+      <ParentClassContext value="article--section-2">
+        <CommentInputSection
+          setIsCreatingComment={setIsCreatingComment}
+          isCreatingComment={isCreatingComment}
+          setNewComment={setNewComment}
+        />
+      </ParentClassContext>
       <VoteArticles articleVotes={articleVotes} />
     </section>
   );

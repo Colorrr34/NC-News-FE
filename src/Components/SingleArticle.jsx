@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { getArticle } from "../API/get";
+import { getArticle } from "../api";
 import { useState, useEffect } from "react";
 import Nav from "./Nav";
 import CommentAndVoteSection from "../Sections/CommentAndVoteSection";
@@ -20,7 +20,6 @@ export default function SingleArticle() {
     votes: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
-
   const [newComment, setNewComment] = useState({});
 
   useEffect(() => {
