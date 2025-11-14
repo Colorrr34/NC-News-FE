@@ -1,20 +1,12 @@
-import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
-import { getUser } from "../api";
 import "../stylesheets/header.css";
 import { useUsername } from "../Provider/UsernameProvider";
 import SelectUser from "./ApiComponents/SelectUser";
+import useAvatarUrl from "../hooks/useAvatarUrl";
 
 export default function Header() {
   const { username } = useUsername();
-
-  const [avatarUrl, setAvatarUrl] = useState(null);
-
-  useEffect(() => {
-    getUser(username).then(({ data: { user: userData } }) => {
-      setAvatarUrl(userData.avatar_url);
-    });
-  }, [username]);
+  const avatarUrl = useAvatarUrl();
 
   return (
     <header>

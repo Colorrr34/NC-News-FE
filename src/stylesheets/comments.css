@@ -32,14 +32,6 @@
   align-items: center;
 }
 
-.comment-section-votes {
-  display: flex;
-  align-items: center;
-  grid-column: 3/4;
-  height: 30px;
-  align-self: flex-start;
-}
-
 .comment-created-at {
   margin-top: 0px;
   margin-bottom: 0px;
