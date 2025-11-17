@@ -10,14 +10,16 @@ This project used my another repository as the server [NC News BE](https://githu
 
 ### Dependencies
 
-Dependencies for production:
-react ([Link](https://react.dev/))
-react-router ([Link](https://reactrouter.com/))
-Axios HTTP([Link](https://axios-http.com/))
+Dependencies for production:\
+
+- react ([Link](https://react.dev/))
+- react-router ([Link](https://reactrouter.com/))
+- Axios HTTP([Link](https://axios-http.com/))
 
 Dependencies for development:
-ESLint ([Link](https://eslint.org/))
-Vite([Link](https://vite.dev/))
+
+- ESLint ([Link](https://eslint.org/))
+- Vite([Link](https://vite.dev/))
 
 ### Installing
 
