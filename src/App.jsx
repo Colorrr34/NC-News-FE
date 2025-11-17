@@ -6,8 +6,10 @@ import SingleArticle from "./Components/SingleArticle";
 import MainPage from "./Components/HomePage";
 import Comments from "./Components/Comments";
 import { UserProvider } from "./Provider/UsernameProvider";
+import { fetchApi } from "./api";
 
 function App() {
+  fetchApi();
   return (
     <>
       <UserProvider>

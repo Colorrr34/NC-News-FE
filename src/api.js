@@ -2,6 +2,10 @@ import axios from "axios";
 
 const baseUrl = "https://rickys-nc-news-be.onrender.com/api/";
 
+export function fetchApi() {
+  return axios.get(baseUrl);
+}
+
 export function getTopics() {
   return axios.get(baseUrl + "topics");
 }

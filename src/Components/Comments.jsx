@@ -5,11 +5,11 @@ import "../stylesheets/comments.css";
 import CommentsPageList from "../Sections/CommentsPageList";
 import CommentInputSection from "../Sections/CommentInputSection";
 import { ParentClassContext } from "../Context/ClassContext";
-import useArticleData from "../hooks/useArticleData";
+import useArticleSummary from "../hooks/useArticleSummary";
 import useCommentsData from "../hooks/useCommentsData";
 
 export default function Comments() {
-  const article = useArticleData();
+  const article = useArticleSummary();
   const {
     comments,
     deletedComment,
