@@ -6,7 +6,7 @@ export default function ArticleSummary(props) {
     <>
       <p>Parent article:</p>
       <Link to={`/articles/${article.article_id}`} key={article.article_id}>
-        <section className="article-section">
+        <section className="article__section">
           <h2>{article.title}</h2>
           <p className="article-info">
             author: {article.author} | comments: {article.comment_count} |

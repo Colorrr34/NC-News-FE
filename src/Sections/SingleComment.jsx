@@ -14,10 +14,10 @@ export default function SingleComment(props) {
   } ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
   return (
-    <section className="single-comment-comment-section">
+    <section className="single-comment__section-comment">
       <p className="single-comment-username">author: {comment.author}</p>
       <p className="single-comment-body">{comment.body}</p>
-      <section className="single-comment-bottom-section">
+      <section className="single-comment__section-bottom">
         <p className="comment-created-at">{createdAt}</p>
         {username === comment.author ? (
           <DeleteComment

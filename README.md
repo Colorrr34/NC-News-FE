@@ -10,7 +10,7 @@ This project used my another repository as the server [NC News BE](https://githu
 
 ### Dependencies
 
-Dependencies for production:\
+Dependencies for production:
 
 - react ([Link](https://react.dev/))
 - react-router ([Link](https://reactrouter.com/))

@@ -27,11 +27,11 @@ export default function Comments() {
   ) : (
     <>
       <Nav topic={article.topic} />
-      <main className="comments-body">
+      <main className="comments__body">
         <ArticleSummary article={article} />
-        <section className="comments--section-3">
+        <section className="comments__section-3">
           <p>comments:</p>
-          <ParentClassContext value="comments--section-3">
+          <ParentClassContext value="comments__section-3">
             <CommentInputSection
               isCreatingComment={isCreatingComment}
               setIsCreatingComment={setIsCreatingComment}

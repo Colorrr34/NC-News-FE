@@ -21,6 +21,7 @@ aside ul {
 aside li {
   padding: 5px;
   border: 2px solid;
+  border-radius: 5px;
   margin: 5px;
   height: 20px;
   align-self: center;
@@ -29,9 +30,4 @@ aside li {
 aside p {
   margin-bottom: 0px;
   margin-top: 0px;
-}
-
-footer {
-  padding: 10px;
-  padding-bottom: 50px;
 }

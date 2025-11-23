@@ -11,7 +11,10 @@ export default function Header() {
   return (
     <header>
       <Link to="/">
-        <h1>NC News</h1>
+        <h1 className="header__h1">
+          <img className="header__img" alt="logo" src="newspaper.svg" />
+          NC News
+        </h1>
       </Link>
       <section className="header--user-section">
         <SelectUser />
