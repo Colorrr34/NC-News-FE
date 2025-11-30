@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Nav from "./Nav";
+import Nav from "../Components/Nav";
 import CommentAndVoteSection from "../Sections/CommentAndVoteSection";
-import "../stylesheets/article.css";
+import "./SingleArticle.css";
 import ArticleComments from "../Sections/ArticleComments";
 import useSingleArticle from "../hooks/useSingleArticle";
 

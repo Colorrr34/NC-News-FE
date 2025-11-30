@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "../stylesheets/header.css";
+import "./Header.css";
 import { useUsername } from "../Provider/UsernameProvider";
 import SelectUser from "./ApiComponents/SelectUser";
 import useAvatarUrl from "../hooks/useAvatarUrl";

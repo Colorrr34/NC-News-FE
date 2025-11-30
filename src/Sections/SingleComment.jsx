@@ -1,6 +1,7 @@
 import DeleteComment from "../Components/ApiComponents/DeleteComment";
 import VoteComment from "../Components/ApiComponents/VoteComment";
 import { useUsername } from "../Provider/UsernameProvider";
+import "./SingleComment.css";
 
 export default function SingleComment(props) {
   const { comment, setDeletedComment } = props;

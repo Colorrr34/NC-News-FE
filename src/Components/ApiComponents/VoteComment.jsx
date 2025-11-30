@@ -1,6 +1,6 @@
 import { upvoteComment, downvoteComment } from "../../api.js";
 import { useState } from "react";
-import "../../stylesheets/voteComment.css";
+import "./VoteComment.css";
 
 export default function VoteComment(props) {
   const { commentId, commentVotes } = props;

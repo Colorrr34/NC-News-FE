@@ -1,4 +1,4 @@
-import { UsernameContext, useUsername } from "../../Provider/UsernameProvider";
+import { useUsername } from "../../Provider/UsernameProvider";
 import { useEffect, useState, useContext } from "react";
 import { getUsers } from "../../api";
 

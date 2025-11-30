@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import SortArticles from "../Sections/SortArticles";
 import ArticlesPageList from "../Sections/ArticlesPageList";
 import useArticlesData from "../hooks/useArticlesData";
+import "./HomePage.css";
 
 export default function MainPage() {
   const {

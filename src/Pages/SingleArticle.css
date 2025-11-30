@@ -10,7 +10,6 @@
 .article--section-2 {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
-  padding: 10px;
 }
 
 .section-create-comment {

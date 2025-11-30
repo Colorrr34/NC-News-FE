@@ -1,7 +1,7 @@
 import ArticleSummary from "../Sections/ArticleSummary";
-import Nav from "./Nav";
+import Nav from "../Components/Nav";
 import SingleComment from "../Sections/SingleComment";
-import "../stylesheets/comments.css";
+import "./Comments.css";
 import CommentsPageList from "../Sections/CommentsPageList";
 import CommentInputSection from "../Sections/CommentInputSection";
 import { ParentClassContext } from "../Context/ClassContext";

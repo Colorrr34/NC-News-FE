@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "../stylesheets/navbar.css";
+import "./Nav.css";
 
 export default function Nav(props) {
   const { topic } = props;

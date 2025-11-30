@@ -2,9 +2,9 @@ import Header from "./Components/Header";
 import { Routes, Route } from "react-router";
 import "./App.css";
 import SideBar from "./Components/SideBar";
-import SingleArticle from "./Components/SingleArticle";
-import MainPage from "./Components/HomePage";
-import Comments from "./Components/Comments";
+import SingleArticle from "./Pages/SingleArticle";
+import MainPage from "./Pages/HomePage";
+import Comments from "./Pages/Comments";
 import { UserProvider } from "./Provider/UsernameProvider";
 import { fetchApi } from "./api";
 
