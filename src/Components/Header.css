@@ -4,16 +4,19 @@ header {
   display: flex;
   justify-content: space-between;
   position: fixed;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   overflow: hidden;
   background-color: rgb(166, 166, 234);
   top: 0px;
   left: 0px;
   right: 0px;
   border-bottom: solid darkmagenta;
+  height: 130px;
+  align-items: center;
 }
 
-.header__h1 {
+.header__section-logo {
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -49,4 +52,6 @@ header {
 .header--user-section {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 110px;
 }

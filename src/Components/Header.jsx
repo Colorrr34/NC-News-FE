@@ -3,6 +3,7 @@ import "./Header.css";
 import { useUsername } from "../Provider/UsernameProvider";
 import SelectUser from "./ApiComponents/SelectUser";
 import useAvatarUrl from "../hooks/useAvatarUrl";
+import Logo from "../assets/newspaper.svg";
 
 export default function Header() {
   const { username } = useUsername();
@@ -11,8 +12,8 @@ export default function Header() {
   return (
     <header>
       <Link to="/">
-        <h1 className="header__h1">
-          <img className="header__img" alt="logo" src="newspaper.svg" />
+        <h1 className="header__section-logo">
+          <img className="header__img" alt="logo" src={Logo} />
           NC News
         </h1>
       </Link>
