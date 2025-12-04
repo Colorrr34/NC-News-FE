@@ -1,6 +1,7 @@
 # NC News Frontend App
 
 A frontend project to build a forum style app.
+Link: https://inquisitive-babka-e19c47.netlify.app/
 
 ## Description
 
