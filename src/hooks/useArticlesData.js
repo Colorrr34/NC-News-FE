@@ -15,21 +15,27 @@ export default function useArticlesData() {
 
   useEffect(() => {
     setCurrentPage(Number(searchParams.get("p")) || 1);
+    setSortBy(searchParams.get("sort_by") || "created_at");
+    setOrder(searchParams.get("order") || "desc");
     setTopic(searchParams.get("topic") || "all");
   }, [searchParams]);
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(sortBy, order, currentPage, topic).then(({ data }) => {
-      const totalPages = Math.ceil(data.total_count / 10);
-      const pages = [];
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-      setPages(pages);
-      setArticles(data.articles);
-      setIsLoading(false);
-    });
+    getArticles(sortBy, order, currentPage, topic)
+      .then(({ data }) => {
+        const totalPages = Math.ceil(data.total_count / 10);
+        const pages = [];
+        for (let i = 1; i <= totalPages; i++) {
+          pages.push(i);
+        }
+        setPages(pages);
+        setArticles(data.articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [sortBy, order, currentPage, topic]);
 
   return {

@@ -5,20 +5,12 @@ import useArticlesData from "../hooks/useArticlesData";
 import "./HomePage.css";
 
 export default function MainPage() {
-  const {
-    setSortBy,
-    setOrder,
-    isLoading,
-    articles,
-    pages,
-    currentPage,
-    topic,
-  } = useArticlesData();
+  const { isLoading, articles, pages, currentPage, topic } = useArticlesData();
 
   return (
     <>
       <main key="articles" className="main-main">
-        <SortArticles setSortBy={setSortBy} setOrder={setOrder} />
+        <SortArticles />
         {isLoading ? (
           <section id="loading-section">
             <h2>Loading...</h2>

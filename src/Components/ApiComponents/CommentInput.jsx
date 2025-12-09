@@ -10,6 +10,7 @@ export default function CommentInput(props) {
       <textarea
         id="comment-input"
         type="text"
+        required
         placeholder={`Commenting as ${username}`}
       ></textarea>
 

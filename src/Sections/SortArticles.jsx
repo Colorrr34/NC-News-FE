@@ -1,5 +1,18 @@
+import { useSearchParams } from "react-router";
+import { useEffect, useState } from "react";
+
 export default function SortArticles(props) {
-  const { setOrder, setSortBy } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("desc");
+
+  useEffect(() => {
+    setSearchParams([
+      ["sort_by", sortBy],
+      ["order", order],
+    ]);
+  }, [sortBy, order]);
+
   return (
     <section className="main--sort-section">
       <label htmlFor="sort-by-selector">sort by: </label>
