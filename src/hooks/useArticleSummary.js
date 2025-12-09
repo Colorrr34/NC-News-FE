@@ -7,8 +7,8 @@ export default function useArticleSummary() {
   const [article, setArticle] = useState({});
 
   useEffect(() => {
-    getArticle(articleId).then(({ data }) => {
-      setArticle(data);
+    getArticle(articleId).then(({ data: { article } }) => {
+      setArticle(article);
     });
   }, []);
 

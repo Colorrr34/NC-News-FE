@@ -13,8 +13,8 @@ export default function useSingleArticle() {
   useEffect(() => {
     setIsLoading(true);
     getArticle(articleId)
-      .then(({ data }) => {
-        const { created_at, ...otherProperties } = data;
+      .then(({ data: { article } }) => {
+        const { created_at, ...otherProperties } = article;
 
         const date = new Date(created_at);
 
