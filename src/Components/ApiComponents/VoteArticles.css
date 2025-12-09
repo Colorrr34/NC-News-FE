@@ -1,0 +1,15 @@
+.section-votes {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.p-votes {
+  padding: 5px;
+}
+
+.p-error {
+  text-wrap: nowrap;
+}

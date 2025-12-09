@@ -6,6 +6,7 @@ export default function VoteComment(props) {
   const { commentId, commentVotes } = props;
 
   const [votes, setVotes] = useState(commentVotes);
+  const [error, setError] = useState(null);
 
   return (
     <section className="comment-section-votes">
@@ -13,8 +14,13 @@ export default function VoteComment(props) {
         <button
           id="comment-upvote"
           onClick={() => {
-            upvoteComment(commentId);
-            setVotes(votes + 1);
+            upvoteComment(commentId)
+              .then(() => {
+                setVotes(votes + 1);
+              })
+              .catch((err) => {
+                setError(err);
+              });
           }}
         >
           upvote
@@ -25,15 +31,20 @@ export default function VoteComment(props) {
         <button
           id="comment-downvote"
           onClick={() => {
-            downvoteComment(commentId);
-            setVotes(votes - 1);
+            downvoteComment(commentId)
+              .then(() => {
+                setVotes(votes - 1);
+              })
+              .catch((err) => {
+                setError(err);
+              });
           }}
         >
           downvote
         </button>
       </label>
-
       <p className="comment-section-votes-p">votes: {votes}</p>
+      {error ? <p className="p-error">Vote failed</p> : null}
     </section>
   );
 }

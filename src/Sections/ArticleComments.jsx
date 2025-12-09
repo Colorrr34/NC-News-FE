@@ -10,6 +10,7 @@ export default function CommentsInArticle(props) {
   const { newComment, commentCount } = props;
   const { username } = useUsername();
   const [deletedComment, setDeletedComment] = useState(null);
+  const [error, setErr] = useState(null);
 
   const [comments, setComments] = useState([]);
 

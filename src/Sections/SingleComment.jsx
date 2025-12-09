@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import DeleteComment from "../Components/ApiComponents/DeleteComment";
 import VoteComment from "../Components/ApiComponents/VoteComment";
 import { useUsername } from "../Provider/UsernameProvider";
