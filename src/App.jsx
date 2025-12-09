@@ -5,6 +5,7 @@ import SideBar from "./Components/SideBar";
 import SingleArticle from "./Pages/SingleArticle";
 import MainPage from "./Pages/HomePage";
 import Comments from "./Pages/Comments";
+import PathNotFound from "./Pages/PathNotFound";
 import { UserProvider } from "./Provider/UsernameProvider";
 import { fetchApi } from "./api";
 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/articles" element={<MainPage />} />
               <Route path="/articles/:id" element={<SingleArticle />} />
               <Route path="/articles/:id/comments" element={<Comments />} />
+              <Route path="*" element={<PathNotFound />} />
             </Routes>
           </div>
         </div>
