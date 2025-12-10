@@ -4,20 +4,34 @@ import CommentAndVoteSection from "../Sections/CommentAndVoteSection";
 import "./SingleArticle.css";
 import ArticleComments from "../Sections/ArticleComments";
 import useSingleArticle from "../hooks/useSingleArticle";
+import { useNavigate } from "react-router";
 
 export default function SingleArticle() {
   const [newComment, setNewComment] = useState({});
-  const { article, isLoading, status, errorMsg } = useSingleArticle();
+  const { article, isLoading, error, setError } = useSingleArticle();
+  const navigate = useNavigate();
 
-  return isLoading ? (
-    <section>
-      <h3>Loading...</h3>
-    </section>
-  ) : status !== 200 ? (
-    <section className="section-error">
-      <p>{errorMsg}</p>
-    </section>
-  ) : (
+  if (error) {
+    setTimeout(() => {
+      setError(null);
+      navigate("/");
+    }, 2000);
+    return (
+      <section className="section-error">
+        <h2>{error.msg}</h2>
+        <p>Redirecting...</p>
+      </section>
+    );
+  }
+  if (isLoading) {
+    return (
+      <section>
+        <h3>Loading...</h3>
+      </section>
+    );
+  }
+
+  return (
     <>
       <Nav topic={article.topic} />
       <main>

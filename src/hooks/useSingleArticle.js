@@ -7,8 +7,7 @@ export default function useSingleArticle() {
 
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [status, setStatus] = useState(200);
-  const [errorMsg, setErrorMsg] = useState("no error");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -22,11 +21,12 @@ export default function useSingleArticle() {
         setIsLoading(false);
       })
       .catch((err) => {
-        setStatus(err.status);
-        setErrorMsg(`Status: ${err.status}\n${err.response.data.msg}`);
-        setIsLoading(false);
+        setError({
+          status: err.status,
+          msg: err.response.data.msg,
+        });
       });
   }, []);
 
-  return { article, isLoading, status, errorMsg };
+  return { article, isLoading, error, setError };
 }
