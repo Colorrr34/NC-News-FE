@@ -7,6 +7,7 @@ import CommentInputSection from "../Sections/CommentInputSection";
 import { ParentClassContext } from "../Context/ClassContext";
 import useArticleSummary from "../hooks/useArticleSummary";
 import useCommentsData from "../hooks/useCommentsData";
+import { useNavigate } from "react-router";
 
 export default function Comments() {
   const article = useArticleSummary();
@@ -20,11 +21,27 @@ export default function Comments() {
     setNewComment,
     pages,
     currentPage,
+    error,
+    setError,
   } = useCommentsData();
+  const navigate = useNavigate();
 
-  return isLoading ? (
-    <section className="section-loading">Loading...</section>
-  ) : (
+  if (error) {
+    setTimeout(() => {
+      setError(null);
+      navigate("/");
+    }, 2000);
+    return (
+      <section className="section-error">
+        <h2>{error.msg}</h2>
+        <p>Redirecting...</p>
+      </section>
+    );
+  }
+  if (isLoading) {
+    return <section className="section-loading">Loading...</section>;
+  }
+  return (
     <>
       <Nav topic={article.topic} />
       <main className="comments__body">

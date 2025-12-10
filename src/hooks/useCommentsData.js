@@ -12,9 +12,8 @@ export default function useCommentsData() {
   const [isLoading, setIsLoading] = useState(true);
   const [isCreatingComment, setIsCreatingComment] = useState(false);
   const [newComment, setNewComment] = useState({});
-  const [currentPage, setCurrentPage] = useState(
-    searchParams.get("p") ? Number(searchParams.get("p")) : 1
-  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (searchParams.get("p")) {
@@ -26,17 +25,24 @@ export default function useCommentsData() {
     setTimeout(
       () => {
         setIsLoading(true);
-        getCommentsByArticle(articleId, 10, currentPage).then(({ data }) => {
-          const totalPages = Math.ceil(data.total_count / 10);
-          const pages = [];
-          for (let i = 1; i <= totalPages; i++) {
-            pages.push(i);
-          }
-          setPages(pages);
-          setComments(data.comments);
-          setDeletedComment(null);
-          setIsLoading(false);
-        });
+        getCommentsByArticle(articleId, 10, currentPage)
+          .then(({ data }) => {
+            const totalPages = Math.ceil(data.total_count / 10);
+            const pages = [];
+            for (let i = 1; i <= totalPages; i++) {
+              pages.push(i);
+            }
+            setPages(pages);
+            setComments(data.comments);
+            setDeletedComment(null);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            setError({
+              status: err.status,
+              msg: err.response.data.msg,
+            });
+          });
       },
       deletedComment ? 3000 : 0
     );
@@ -61,5 +67,7 @@ export default function useCommentsData() {
     setNewComment,
     pages,
     currentPage,
+    error,
+    setError,
   };
 }
