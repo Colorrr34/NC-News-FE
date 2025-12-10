@@ -10,6 +10,7 @@ export default function useArticlesData() {
   const [order, setOrder] = useState("desc");
   const [pages, setPages] = useState([]);
   const [topic, setTopic] = useState("all");
+  const [error, setError] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,17 +35,20 @@ export default function useArticlesData() {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        setError({
+          status: err.status,
+          msg: err.response.data.msg,
+        });
       });
   }, [sortBy, order, currentPage, topic]);
 
   return {
-    setSortBy,
-    setOrder,
     isLoading,
     articles,
     pages,
     currentPage,
     topic,
+    error,
+    setError,
   };
 }
