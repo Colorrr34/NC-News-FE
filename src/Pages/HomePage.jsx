@@ -21,11 +21,11 @@ export default function MainPage() {
 
             return (
               <section
-                className="main--article-section"
+                className="section-homepage-article"
                 key={article.article_id}
               >
                 <Link to={`/articles/${article.article_id}`}>
-                  <div className="main--article-section-container">
+                  <div className="container-single-article">
                     <h2>{article.title}</h2>
                     <p className="article-info">
                       author: {article.author} | comments:{" "}

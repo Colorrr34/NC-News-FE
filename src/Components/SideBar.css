@@ -5,7 +5,7 @@ aside {
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  width: 170px;
+  width: min(15%, 170px);
   height: 90vh;
   border-right: solid;
   padding: 10px;
