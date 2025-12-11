@@ -5,7 +5,7 @@ import guestIcon from "../assets/guest.svg";
 
 export default function useAvatarUrl() {
   const { username } = useUsername();
-  const { avatarUrl } = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
 
   useEffect(() => {
     if (username === "Guest") {
