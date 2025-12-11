@@ -4,7 +4,7 @@ import { createContext } from "react";
 export const UsernameContext = createContext(null);
 
 export function UserProvider({ children }) {
-  const [username, setUsername] = useState("tickle122");
+  const [username, setUsername] = useState("Guest");
 
   return (
     <UsernameContext value={{ username, setUsername }}>

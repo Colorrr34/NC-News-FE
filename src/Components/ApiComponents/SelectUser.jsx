@@ -21,6 +21,7 @@ export default function SelectUser() {
           setUsername(e.target.value);
         }}
       >
+        <option key="guest">Guest</option>
         {users.map((user) => {
           return <option key={user.username}>{user.username}</option>;
         })}

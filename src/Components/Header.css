@@ -13,12 +13,19 @@ header {
   right: 0px;
   border-bottom: solid darkmagenta;
   height: 130px;
-  align-items: center;
+  text-align: center;
 }
 
-.header__section-logo {
+.section-logo {
+  width: min(200px, 40%);
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.container-logo {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 .header__img {
@@ -27,14 +34,17 @@ header {
 }
 
 .user-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto 55px;
   border: solid 2px;
   padding: 3px;
   border-radius: 3%;
   align-self: center;
   width: 150px;
+}
+
+.user-banner p {
+  justify-self: center;
 }
 
 .header--select-user--form {

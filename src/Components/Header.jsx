@@ -7,24 +7,29 @@ import Logo from "../assets/newspaper.svg";
 
 export default function Header() {
   const { username } = useUsername();
-  const avatarUrl = useAvatarUrl();
+  const { avatarUrl, setAvatarUrl } = useAvatarUrl();
 
   return (
     <header>
-      <Link to="/">
-        <h1 className="header__section-logo">
-          <img className="header__img" alt="logo" src={Logo} />
-          NC News
-        </h1>
-      </Link>
+      <section className="section-logo">
+        <Link to="/">
+          <div className="container-logo">
+            <img className="header__img" alt="logo" src={Logo} />
+            <h1>NC News</h1>
+          </div>
+        </Link>
+      </section>
       <section className="header--user-section">
         <SelectUser />
         <section className="user-banner">
           <p>{username}</p>
           <img
             src={avatarUrl}
-            alt="user-avatar-picture"
+            alt="user-avatar"
             className="img-user-profile"
+            onError={(err) => {
+              console.log(err);
+            }}
           />
         </section>
       </section>
