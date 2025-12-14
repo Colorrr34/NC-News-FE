@@ -7,7 +7,7 @@ import SingleComment from "./SingleComment";
 
 export default function CommentsInArticle(props) {
   const { id: articleId } = useParams();
-  const { newComment, commentCount } = props;
+  const { newComment, commentsCount } = props;
   const { username } = useUsername();
   const [deletedComment, setDeletedComment] = useState(null);
   const [error, setErr] = useState(null);
@@ -56,7 +56,7 @@ export default function CommentsInArticle(props) {
         })}
       </ul>
       <p>
-        <Link to="comments">Read more comments:({commentCount})</Link>
+        <Link to="comments">Read more comments:({commentsCount})</Link>
       </p>
     </div>
   );

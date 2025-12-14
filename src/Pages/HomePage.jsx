@@ -45,7 +45,7 @@ export default function MainPage() {
                     <h2>{article.title}</h2>
                     <p className="article-info">
                       author: {article.author} | comments:{" "}
-                      {article.comment_count} | votes: {article.votes}
+                      {article.comments_count} | votes: {article.votes}
                     </p>
                     <p className="created-at">
                       Created at: {date.toDateString()}

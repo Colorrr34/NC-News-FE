@@ -29,7 +29,7 @@ export default function SortArticles() {
       >
         <option value="created_at">created at</option>
         <option value="votes">votes</option>
-        <option value="comment_count">comments count</option>
+        <option value="comments_count">comments count</option>
       </select>
       <label htmlFor="order-selector">order: </label>
       <select

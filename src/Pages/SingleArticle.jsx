@@ -49,7 +49,7 @@ export default function SingleArticle() {
         />
         <ArticleComments
           newComment={newComment}
-          commentCount={article.comment_count}
+          commentsCount={article.comments_count}
         />
       </main>
     </>
