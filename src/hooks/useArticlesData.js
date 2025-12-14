@@ -4,24 +4,17 @@ import { useSearchParams } from "react-router";
 
 export default function useArticlesData() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
   const [articles, setArticles] = useState([]);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [order, setOrder] = useState("desc");
   const [pages, setPages] = useState([]);
-  const [topic, setTopic] = useState("all");
   const [error, setError] = useState(null);
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setCurrentPage(Number(searchParams.get("p")) || 1);
-    setSortBy(searchParams.get("sort_by") || "created_at");
-    setOrder(searchParams.get("order") || "desc");
-    setTopic(searchParams.get("topic") || "all");
-  }, [searchParams]);
+    const currentPage = Number(searchParams.get("p")) || 1;
+    const sortBy = searchParams.get("sort_by") || "created_at";
+    const order = searchParams.get("order") || "desc";
+    const topic = searchParams.get("topic") || "all";
 
-  useEffect(() => {
     setIsLoading(true);
     getArticles(sortBy, order, currentPage, topic)
       .then(({ data }) => {
@@ -40,14 +33,12 @@ export default function useArticlesData() {
           msg: err.response.data.msg,
         });
       });
-  }, [sortBy, order, currentPage, topic]);
+  }, [searchParams]);
 
   return {
     isLoading,
     articles,
     pages,
-    currentPage,
-    topic,
     error,
     setError,
   };

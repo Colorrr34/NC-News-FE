@@ -1,16 +1,19 @@
 import { useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 
-export default function SortArticles(props) {
+export default function SortArticles() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
 
   useEffect(() => {
-    setSearchParams([
-      ["sort_by", sortBy],
-      ["order", order],
-    ]);
+    const page = Number(searchParams.get("p") || 1);
+    const params = {};
+    if (sortBy !== "created_at") params.sort_by = sortBy;
+    if (order !== "desc") params.order = order;
+    if (page !== 1) params.p = page;
+    console.log(params);
+    setSearchParams(params);
   }, [sortBy, order]);
 
   return (
@@ -21,6 +24,7 @@ export default function SortArticles(props) {
         onChange={(e) => {
           setSortBy(e.target.value);
         }}
+        value={sortBy}
       >
         <option value="created_at">created at</option>
         <option value="votes">votes</option>
@@ -32,6 +36,7 @@ export default function SortArticles(props) {
         onChange={(e) => {
           setOrder(e.target.value);
         }}
+        value={order}
       >
         <option value="desc">descending</option>
         <option value="asc">ascending</option>
