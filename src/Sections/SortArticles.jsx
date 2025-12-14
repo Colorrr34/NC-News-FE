@@ -8,11 +8,12 @@ export default function SortArticles() {
 
   useEffect(() => {
     const page = Number(searchParams.get("p") || 1);
+    const topic = searchParams.get("topic") || "all";
     const params = {};
     if (sortBy !== "created_at") params.sort_by = sortBy;
     if (order !== "desc") params.order = order;
     if (page !== 1) params.p = page;
-    console.log(params);
+    if (topic !== "all") params.topic = topic;
     setSearchParams(params);
   }, [sortBy, order]);
 

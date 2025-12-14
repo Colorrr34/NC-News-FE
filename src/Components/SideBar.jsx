@@ -19,7 +19,7 @@ export default function SideBar() {
         {topics.map((topic) => {
           return (
             <li key={topic.slug}>
-              <Link to={`/articles?topic=${topic.slug}`}>
+              <Link to={`/?topic=${topic.slug}`}>
                 <p>{topic.slug}</p>
               </Link>
             </li>
