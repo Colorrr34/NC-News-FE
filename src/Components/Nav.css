@@ -8,10 +8,11 @@
   background-color: lightgray;
   padding: 2px;
   border-radius: 10%;
+  border: 2px solid transparent;
 }
 
 .nav--topic:hover {
-  border: solid gray 2px;
+  border: 2px solid gray;
 }
 
 .nav--topic a {

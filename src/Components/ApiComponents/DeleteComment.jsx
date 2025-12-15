@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { deleteComment } from "../../api";
+import "./DeleteComment.css";
 
 export default function DeleteComment(props) {
   const { commentId, setDeletedComment } = props;
@@ -7,7 +8,7 @@ export default function DeleteComment(props) {
   const [tryingToDelete, setTryingToDelete] = useState(false);
 
   return (
-    <section className="section--delete">
+    <section className="section-delete">
       <label htmlFor="delete-comment-button" />
       <button
         id="delete-comment-button"
@@ -20,7 +21,7 @@ export default function DeleteComment(props) {
         delete comment
       </button>
       {tryingToDelete ? (
-        <div className="button--delete-confirm">
+        <>
           <label htmlFor="delete-confirm-button-positive" />
           <button
             id="delete-confirm-button-positive"
@@ -42,7 +43,7 @@ export default function DeleteComment(props) {
           >
             no
           </button>
-        </div>
+        </>
       ) : null}
     </section>
   );

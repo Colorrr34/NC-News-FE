@@ -1,9 +1,7 @@
 .single-comment__section-bottom {
-  height: 30px;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
-  /* display: grid;
-  grid-template-columns: 2fr 1fr 1fr; */
   align-items: center;
 }
 

@@ -1,0 +1,7 @@
+.section-delete {
+  height: auto;
+  display: flex;
+  gap: 0.5rem 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}

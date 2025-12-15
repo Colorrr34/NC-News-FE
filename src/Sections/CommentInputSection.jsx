@@ -15,8 +15,8 @@ export default function CommentInputSection(props) {
   const [showSubmitMessage, setShowSubmitMessage] = useState(false);
 
   function submitComment(text) {
-    postComment(text, username, articleId).then(({ data }) => {
-      setNewComment(data);
+    postComment(text, username, articleId).then(({ data: { comment } }) => {
+      setNewComment(comment);
     });
     setShowSubmitMessage(true);
   }
