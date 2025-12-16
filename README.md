@@ -23,6 +23,20 @@ Dependencies for development:
 - ESLint ([Link](https://eslint.org/))
 - Vite([Link](https://vite.dev/))
 
-### Installing
+### Installing/ run dev
 
-No installing other than dependencies are required.
+1. install dependencies
+   
+```
+npm i
+```
+
+2. Run vite for localhost
+
+```
+npm run dev
+```
+
+
+
+
