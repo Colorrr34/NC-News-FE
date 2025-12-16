@@ -1,6 +1,7 @@
-
 # NC News Frontend App
-<img width="2068" height="3972" alt="image" src="https://github.com/user-attachments/assets/6d12dec0-a9f9-4abb-8bee-566ba3b2311f" />
+
+<img width="2148" height="1482" alt="image" src="https://github.com/user-attachments/assets/8937c137-3775-41fc-a73f-f9983216016a" />
+
 
 A frontend project to build a forum style app. \
 Link: https://inquisitive-babka-e19c47.netlify.app/ \
