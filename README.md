@@ -1,7 +1,8 @@
 # NC News Frontend App
 
 A frontend project to build a forum style app. \
-Link: https://inquisitive-babka-e19c47.netlify.app/
+Link: https://inquisitive-babka-e19c47.netlify.app/ \
+It might takes up to a minute to load initially as the Render service of the backend server spins down regularly.
 
 ## Description
 
